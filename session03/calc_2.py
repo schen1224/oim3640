@@ -26,15 +26,8 @@ else:
     leavemin = Leavemin + total_minute
 
 
-print(
-    "I arrive home at "
-    + str(Leavehr)
-    + ":"
-    + str(leavemin)
-    + ":"
-    + str(total_second)
-)
+print(f"I arrive home at {Leavehr} : {leavemin} : {total_second}")
 
 print("Question 4:")
 percentage = (89 - 82) / 82
-print(f"the percentage of increase is {percentage:3.1f}%.")
+print(f"the percentage of increase is {percentage:3.1%}.")
