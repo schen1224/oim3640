@@ -12,7 +12,7 @@ print("Question 2.2: false")
 print("Question 2.3: true")
 print("Question 2.4: false")
 print()
-
+# and or: always do and first
 
 import time
 

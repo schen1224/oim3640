@@ -1,9 +1,9 @@
 from cmath import sqrt
 import math
 
-a = 1
-b = 6
-c = 0
+a=float(input("Enter a number:>>>"))
+b=float(input("Enter a number:>>>"))
+c=float(input("Enter a number:>>>"))
 
 
 def qua(a, b, c):
