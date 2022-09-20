@@ -123,6 +123,9 @@ special(raphael, 100, 5)
 special(raphael)
 
 # 02:
+
+length = input('what is the length>')
+
 def square(t, length):
     """
     draw squares with length of 40
@@ -137,7 +140,8 @@ def special02(t, angle, length):
     squares with 40 length and increment of 4 unites
     """
     for i in range(60):
-        square(t, i * 4 + length)
+        square(t, i * 4 + length) 
+        # length +=4
         t.lt(angle)
 
 
