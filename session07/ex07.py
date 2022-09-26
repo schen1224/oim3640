@@ -39,7 +39,7 @@ def calculate_bmi(weight, height):
     bmi = weight / (height**2)
     if bmi <= 18.5:
         return "Underweight, eat more!"
-    elif 18.5 < bmi < 24.9:
+    elif 18.5 < bmi <= 25:
         return "Normal weight, you good!"
     elif 25 < bmi < 29.9:
         return "Overweight, eat little bit less!"

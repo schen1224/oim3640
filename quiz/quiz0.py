@@ -48,17 +48,16 @@ def weight(earth_weight, planet):
     """
     your weight on any three of the planets of your choices
     """
-    if planet == "Moon":
+    if planet.lower() == "Moon":
         weight = earth_weight * 0.165
-        return weight
-    elif planet == "Mars":
+    elif planet.lower() == "Mars":
         weight = earth_weight * 0.378
-        return weight
-    elif planet == "Venus":
+    elif planet.lower() == "Venus":
         weight = earth_weight * 0.904
-        return weight
     else:
-        return print("IDK")
+        weight='invalid'
+    return weight
+    
 
 
 print(weight(earth_weight, planet))
