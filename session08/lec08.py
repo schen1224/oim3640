@@ -34,3 +34,5 @@ print(sum_odd(5))
 # for: if we know how many times we want to do
 # while: only when/what to stop
 
+# continue only ignore the one but continue
+# break will still print and then stop

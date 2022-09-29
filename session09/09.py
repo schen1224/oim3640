@@ -21,6 +21,9 @@ def roll():
 
 print (roll())
 
+# r+=i
+# r= oldr +i
+
 
 # if __name=='__main__':
 #     main()
