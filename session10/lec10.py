@@ -9,3 +9,5 @@ def duckings():
             print(letter+suffix)
 
 print(duckings())
+# index ('a') give you the position of the letter
+# find gives you negative value if no result found
