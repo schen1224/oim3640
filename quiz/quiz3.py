@@ -5,7 +5,7 @@ def bad_words():
     - and contain at least one letter that occurs twice in a row,
     - and have same first letter and last letter.
     '''
-    f = open('data/words.txt')
+    f = open('data/random_words.txt')
     count=0
     special=['c','o','v','i','d']
     for line in f:

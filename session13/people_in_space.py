@@ -9,14 +9,20 @@ with urllib.request.urlopen(url) as f:
     #print(j) 
 
 # Can you print number of people in the space?
-x = j['people']
-print(len(x))
-
+# x = j['people']
+# print(len(x))
+print(j.get('number',0))
+print(j['number'])
 # Can you print all the names?
+x = j['people']
+for i in x:
+    name=i['name']
+    craft=i['craft']
+    print(name,craft)
+    # print(j['people'][int(i)]['name']) #name is the key
 
-print(x)
-for key in x:
-    print(j.get('name'))
+
+
  
 
 
