@@ -1,7 +1,8 @@
 # means all the rest, doesn't matter how many parts
-# phone=917-603-9897
-# area,local,number=phone.split('-') 
-# print(area)
+phone=917-603-9897
+(area,local,number)=phone.split('-') 
+print(area)
+
 
 '''
 sets:

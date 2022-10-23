@@ -2,18 +2,32 @@ f = open('data/words.txt')
 for line in f:
         word = line.strip()
 
+words = []
 
-def make_anagram_dict(word):
-    """change the list of words to a dictionary"""
-    result = defaultdict(list)
-    for letter in word:
-        fp = ''.join(sorted(letter))
-        result[fp].append(letter)
+def file_to_wordlist():
+    """
+    Return a list of words from words.txt
+    """
+    words = []
+    f = open("data/words.txt")
+    for line in f:
+        word = line.strip()
+        words.append(word)
+    return words
 
-    result = {fp: result[fp] for fp in result if len(result[fp]) > 1}
-    return result
+def sort_word(word):
+    '''
+    '''
 
-'''
-after creating the dictionary, assign key and values to words, enabling us to call a specifc anagram. And then group them together by choosing all values. 
-'''
+print(sort_word('deltas'))
 
+def list_to_dict(word_list):
+    '''
+    '''
+
+list_for_test=[]
+result=list_to_dict(list_for_test)
+
+def dict_to_list(anagram_dict):
+    '''
+    '''
