@@ -9,8 +9,10 @@ If you use YOUR_OWN_APIKEY, please use it directly in the code. DO NOT import
 it from a file that is ignored by Git.
 -------------------------------------------------------------------------------
 """
+from cgitb import reset
 import urllib.request
 import json
+import pprint
 
 
 def get_wind_speed(city, country):
@@ -22,12 +24,15 @@ def get_wind_speed(city, country):
     f = urllib.request.urlopen(url)
     response_text = f.read().decode('utf-8')
     response_data = json.loads(response_text)
-    wind=response_data.get('wind')
-    for i in wind:
-        wind.get('speed')
-        result=wind.get('speed')
-    return(result)
-
+    # wind=response_data.get('wind')
+    # for i in wind:
+    #     wind.get('speed')
+    #     result=wind.get('speed')
+    # return(result)
+    # pprint.pprint(response_data)
+    wind=response_data['wind']
+    speed=wind['speed']
+    return speed
 
 ## When you've completed your function, uncomment the following lines and run this file to test!
 # print(get_wind_speed('wellesley', 'us')) # you can replace the arguments with your hometown city and country code. If there are two (or more) words in the city name, you need to add '+' or '%20' between words, i.e. if you are from New York, try "new+york" or "new%20york".
@@ -58,17 +63,25 @@ def encrypt(text):
     defined above, and return the new string
     """
 
-    b = text
-    y = 0
-    vowels_list = ['a', 'e', 'i', 'o', 'u']
-    new_list = ['4', '3', '1', '0', '7']
-    for x in vowels_list:
-        for y in range(len(text)):
-            if x == text[y]:
-                a = new_list[vowels_list.index(x)]
-                b = b.replace(x,a)
-                y = y +1
-    return b
+    # b = text
+    # y = 0
+    # vowels_list = ['a', 'e', 'i', 'o', 'u']
+    # new_list = ['4', '3', '1', '0', '7']
+    # for x in vowels_list:
+    #     for y in range(len(text)):
+    #         if x == text[y]:
+    #             a = new_list[vowels_list.index(x)]
+    #             b = b.replace(x,a)
+    #             y = y +1
+    # return b
+    d={'a':'4','e':'3','i':'1','o':'0','u':'7'}
+    res=''
+    for letter in text:
+        if letter in d:
+            res +=d[letter]
+        else:
+            res +=letter
+    return res
 
 ## When you've completed your function, uncomment the following lines and run this file to test!
 # s1 = "babson college"
@@ -93,26 +106,37 @@ necessary parameter(s).
 -------------------------------------------------------------------------------
 """
 
+def getdata():
+    url = f'https://oim-apis.herokuapp.com/mass' 
+    with urllib.request.urlopen(url) as f:
+        response_text = f.read().decode('utf-8')
+        response_data = json.loads(response_text)  
+    return response_data 
+
 
 def get_town_names():
     """
     Returns a sorted list of town names
     """
+    url = f'https://oim-apis.herokuapp.com/mass' 
+    with urllib.request.urlopen(url) as f:
+        response_text = f.read().decode('utf-8')
+        response_data = json.loads(response_text)
     town=[]
-    url = f'https://oim-apis.herokuapp.com/mass'
-    f = urllib.request.urlopen(url)
-    response_text = f.read().decode('utf-8')
-    response_data = json.loads(response_text)
-    for name in response_data:
-        town = name.strip()
-        town.append(name)
+    # pprint.pprint(response_data)
+    # for name in response_data:
+    #     town = name.strip()
+    #     town.append(name)
+    # return sorted(town)
+    for d in response_data: #d is a dict of town
+        town.append(d['name']) #从d里面选name
     return sorted(town)
 
 
 ## When you've completed your function, uncomment the following lines and run this file to test!
-names = get_town_names()
-print(type(names), len(names))
-print(names)
+# names = get_town_names()
+# print(type(names), len(names))
+# print(names)
 
 ## Expected output:
 # <class 'list'> 351
@@ -148,12 +172,26 @@ def get_mayor_dict():
     f = urllib.request.urlopen(url)
     response_text = f.read().decode('utf-8')
     response_data = json.loads(response_text)
-    lst=list(response_data)
-    res_dct = {lst[i]: lst[i + 1] for i in range(0, len(lst), 2)}
-    n=res_dct.get('name')
-    m=res_dct.get('major')
-    return (n,m)
+    # lst=list(response_data)
+    # res_dct = {lst[i]: lst[i + 1] for i in range(0, len(lst), 2)}
+    # n=res_dct.get('name')
+    # m=res_dct.get('major')
+    # return (n,m)
+    mayor_dict={}
+    '''
+    get town and major name. 
+    if major not in the dict, create a new list,
+    else append town name to the list
+    '''
+    for town in response_data[:5]:
+        mayor=town['mayor']
+        town_name=town['name']
+        if mayor not in mayor_dict:
+            mayor_dict[mayor]=[town_name]
+        else:
+            mayor_dict[mayor].append(town_name)
 
+        return mayor_dict
 
 ## When you've completed your function, uncomment the following lines and run this file to test!
 # mayor_dict = get_mayor_dict()
@@ -178,15 +216,24 @@ def sort_mayors():
     Returs a list that shows the mayor names sorted by the total population
     they are managing from most to least.
     """
-    sorted_values = sorted(dict.values(), reverse=True)
-    sorted_dict = {}
-    sorted_dict.append(sorted_values[i])
-    for i in sorted_dict:
-        for k in dict.keys():
-            if dict[k] == i:
-                sorted_dict[k] = dict[k]
-    return sorted_dict
+    # sorted_values = sorted(dict.values(), reverse=True)
+    # sorted_dict = {}
+    # sorted_dict.append(sorted_values[i])
+    # for i in sorted_dict:
+    #     for k in dict.keys():
+    #         if dict[k] == i:
+    #             sorted_dict[k] = dict[k]
+    # return sorted_dict
+    m={}
+    for town in response_data[:5]:
+    mayor=town['mayor']
+    pp=town['population']
+    if mayor not in m:
+        m[mayor]=[town_name]
+    else:
+        m[mayor]+= [population]
 
+    return mayor_dict
 
 # sorted_mayor_list = sort_mayors()
 # print(sorted_mayor_list) # Callum is the busiest mayor because he manages almost 1 million people
