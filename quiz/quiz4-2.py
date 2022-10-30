@@ -14,7 +14,6 @@ necessary parameter(s).
 -------------------------------------------------------------------------------
 """
 from cgitb import reset
-import string
 import urllib.request
 import json
 import pprint

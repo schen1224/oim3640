@@ -3,5 +3,6 @@ weather = {'coord': {'lon': -71.29, 'lat': 42.3}, 'weather': [{'id': 500, 'main'
 
 # what is current temperature?
 a = weather['main']
-b = a['temp']
-print(b)
+b = a['wind']
+c=a['speed']
+print(c)

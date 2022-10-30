@@ -23,6 +23,10 @@ def create_list():
         words.append(word)
     return words
 
+'''
+list(d.key)
+'''
+
 
 def histogram(s):
     """

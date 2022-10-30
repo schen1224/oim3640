@@ -1,9 +1,10 @@
 import urllib.request
 import json
+import pprint
 
-APIKEY = 'e998e60a5b1163b8d20392ab4093b237'
-city = 'Wellesley'
-country_code = 'us'
+# APIKEY = 'e998e60a5b1163b8d20392ab4093b237'
+# city = 'Wellesley'
+# country_code = 'us'
 url = f'http://api.openweathermap.org/data/2.5/weather?q={city},{country_code}&APPID={APIKEY}'
 
 # print(url)
@@ -14,5 +15,6 @@ print(response_data)
 
 # How do we get current temperature?
 
-tem=response_data.get('temp',287.23)
-print(tem)
+wind_s=response_data.get('wind',)
+print(wind_s)
+pprint.pprint()
