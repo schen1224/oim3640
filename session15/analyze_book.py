@@ -11,7 +11,7 @@ def process_file(file, skip_header):
     returns: map from each word to the number of times it appears.
     """
     hist = {}
-    fp = open(data/prideandprejudice.txt, encoding='UTF8')
+    fp = open('data/prideandprejudice.txt', encoding='UTF8')
 
     if skip_header:
         skip_gutenberg_header(fp)
@@ -47,10 +47,7 @@ def skip_gutenberg_header(fp):
 
 def total_words(hist):
     """Returns the total of the frequencies in a histogram."""
-    total = 0
-    for freq in hist.values:
-        total+=freq
-    return freq
+    return sum(hist.values())
 
 
 
